@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { concat, exhaustMap, filter, map, Observable, Subject } from 'rxjs';
+import {
+  concat,
+  exhaustMap,
+  filter,
+  map,
+  Observable,
+  shareReplay,
+  Subject,
+} from 'rxjs';
 import { TMDBMovieModel } from '../../shared/model/movie.model';
 import { MovieService } from '../movie.service';
 
@@ -46,6 +54,6 @@ export class MovieListPageComponent implements OnInit {
           )
         )
       )
-    );
+    ).pipe(shareReplay(10));
   }
 }
