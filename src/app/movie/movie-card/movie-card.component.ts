@@ -22,4 +22,6 @@ export class MovieCardComponent implements OnInit {
   movieClicked() {
     this.selected.emit(this.movie);
   }
+
+  divs = new Array(100).fill(null).map((v, i) => i);
 }

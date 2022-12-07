@@ -59,9 +59,8 @@ Now that we have the dimension pushed to us, we can use it in order to determine
 ```ts
 // tilt.directive.ts
 
-// use offsetX instead of pageX
-// determine position by using the stored width and compare it to the offsetX
-const pos > this.middle ? 1 : 0;
+// determine position by using the stored width and compare it to the pageX
+const pos = pageX > this.middle ? 1 : 0;
 
 ```
 </details>
