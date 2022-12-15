@@ -2,7 +2,8 @@
 <div class="results" *ngIf="movies$ | async as movies">
   <button class="movie-result"
           (click)="selectMovie(movie)"
-          *ngFor="let movie of movies">
+          *ngFor="let movie of movies; trackBy: trackMovie">
+    <dirty-checked></dirty-checked>
     <img [src]="movie.poster_path | movieImage" width="35" [alt]="movie.title">
     <span>{{ movie.title }}</span>
   </button>

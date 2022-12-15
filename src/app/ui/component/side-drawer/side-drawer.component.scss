@@ -22,7 +22,10 @@
     var(--theme-anim-easing-easeOut);
   box-shadow: var(--theme-shadow-16);
   background-color: var(--palette-background-paper);
-  left: -250px;
+  //left: -250px;
+  transform: translateX(-100%);
+  contain: strict;
+  height: 100vh;
 
   @include isDesktop {
     box-shadow: unset;
@@ -32,12 +35,14 @@
 
 @media screen and (min-width: 1298px) {
   .side-drawer {
-    left: 0;
+    //left: 0;
+    transform: translateX(0);
   }
   ui-backdrop {
     display: none;
   }
 }
 .side-drawer.opened {
-  left: 0;
+  //left: 0;
+  transform: translateX(0);
 }

@@ -1,5 +1,5 @@
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 import { MovieService } from '../movie/movie.service';
 
@@ -19,7 +19,7 @@ export class AppShellComponent implements OnInit {
   get searchValue(): string {
     return this._searchValue;
   }
-  readonly genres$ = this.movieService.getGenres();
+  readonly genres$ = this.movieService.genres$;
 
   constructor(private movieService: MovieService, private router: Router) {}
 

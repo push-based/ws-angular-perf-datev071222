@@ -1,4 +1,5 @@
 <ui-side-drawer
+  *rxLet="[]"
   [opened]="sideDrawerOpen"
   (openedChange)="sideDrawerOpen = $event"
 >
@@ -18,18 +19,18 @@
 
     <h3 class="navigation--headline">User Menu</h3>
 
-      <a
-        class="navigation--link"
-        [routerLink]="['/my-movies']"
-        routerLinkActive="active"
-      >
-        <div class="navigation--menu-item">
-          <svg-icon class="navigation--menu-item-icon" name="account"></svg-icon>
-          My Movies
-        </div>
-      </a>
+    <a
+      class="navigation--link"
+      [routerLink]="['/my-movies']"
+      routerLinkActive="active"
+    >
+      <div class="navigation--menu-item">
+        <svg-icon class="navigation--menu-item-icon" name="account"></svg-icon>
+        My Movies
+      </div>
+    </a>
 
-      <h3 class="navigation--headline">Categories</h3>
+    <h3 class="navigation--headline">Categories</h3>
 
     <a
       class="navigation--link"
@@ -108,7 +109,7 @@
     </ui-hamburger-button>
     <div class="ui-toolbar--widget-container">
       <ui-search-bar
-          [(ngModel)]="searchValue"
+        [(ngModel)]="searchValue"
       ></ui-search-bar>
       <ui-dark-mode-toggle></ui-dark-mode-toggle>
       <svg-icon name="account"></svg-icon>

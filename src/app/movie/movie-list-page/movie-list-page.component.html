@@ -1,4 +1,4 @@
-<ng-container *ngIf="movies; else: loader">
+<ng-container *ngIf="movies$ | async as movies; else: loader">
 
   <movie-list
     *ngIf="movies && movies.length > 0; else: elseTmpl"

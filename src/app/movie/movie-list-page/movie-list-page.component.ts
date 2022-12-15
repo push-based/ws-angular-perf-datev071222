@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   concat,
@@ -6,8 +6,9 @@ import {
   filter,
   map,
   Observable,
-  shareReplay,
   Subject,
+  switchMap,
+  tap,
 } from 'rxjs';
 import { TMDBMovieModel } from '../../shared/model/movie.model';
 import { MovieService } from '../movie.service';
@@ -22,24 +23,35 @@ export class MovieListPageComponent implements OnInit {
 
   readonly paginate$ = new Subject<boolean>();
 
+  readonly movies$ = this.activatedRoute.params.pipe(
+    switchMap((params) => {
+      if (params['category']) {
+        return this.paginate((page) =>
+          this.movieService.getMovieList(params['category'], page)
+        ).pipe(
+          tap((movies) => {
+            this.movies = movies;
+          })
+        );
+      } else {
+        return this.paginate((page) =>
+          this.movieService.getMoviesByGenre(params['id'], page)
+        ).pipe(
+          tap((movies) => {
+            this.movies = movies;
+          })
+        );
+      }
+    })
+  );
+
   constructor(
     private activatedRoute: ActivatedRoute,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['category']) {
-        this.paginate((page) =>
-          this.movieService.getMovieList(params['category'], page)
-        ).subscribe((movies) => (this.movies = movies));
-      } else {
-        this.paginate((page) =>
-          this.movieService.getMoviesByGenre(params['id'], page)
-        ).subscribe((movies) => (this.movies = movies));
-      }
-    });
-  }
+  ngOnInit() {}
 
   private paginate(
     requestFn: (page: string) => Observable<TMDBMovieModel[]>
@@ -54,6 +66,6 @@ export class MovieListPageComponent implements OnInit {
           )
         )
       )
-    ).pipe(shareReplay(10));
+    ).pipe(/*shareReplay(10)*/);
   }
 }

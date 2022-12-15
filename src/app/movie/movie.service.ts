@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of, shareReplay } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { TMDBMovieCreditsModel } from '../shared/model/movie-credits.model';
 import { TMDBMovieDetailsModel } from '../shared/model/movie-details.model';
@@ -12,15 +12,16 @@ import { MovieModel } from './movie-model';
   providedIn: 'root',
 })
 export class MovieService {
-  constructor(private httpClient: HttpClient) {}
+  readonly genres$ = this.httpClient
+    .get<{ genres: TMDBMovieGenreModel[] }>(
+      `${environment.tmdbBaseUrl}/3/genre/movie/list`
+    )
+    .pipe(
+      map(({ genres }) => genres),
+      shareReplay({ bufferSize: 1, refCount: true })
+    );
 
-  getGenres(): Observable<TMDBMovieGenreModel[]> {
-    return this.httpClient
-      .get<{ genres: TMDBMovieGenreModel[] }>(
-        `${environment.tmdbBaseUrl}/3/genre/movie/list`
-      )
-      .pipe(map(({ genres }) => genres));
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getMoviesByGenre(
     genre: TMDBMovieGenreModel['id'],
