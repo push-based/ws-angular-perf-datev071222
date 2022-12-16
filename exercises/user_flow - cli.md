@@ -620,3 +620,14 @@ await flow.snapshot();
 </details>
 
 ![uf-final-audit](images/user-flow/lh-uf-final-audit.png)
+
+## Bonus: Battletest your improvements
+
+With the existing user-flow setup, you can run tests on the default branch and a branch with
+all of your improvements in place.
+See how metrics like `LCP` & `INP` are improved.
+
+## Bonus: (if you've got the time for it :)) Implement Scroll Timespan
+
+In the same manner as before, integrate a new flow that involves scrolling the list
+so that the pagination is triggered.
