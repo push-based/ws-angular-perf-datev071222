@@ -3,7 +3,7 @@
      (click)="movieClicked()">
 
   <img class="movie-image"
-       alt="Turning Red"
+       [alt]="movie.title"
        [src]="movie.poster_path | movieImage">
 
   <div class="movie-card-content">

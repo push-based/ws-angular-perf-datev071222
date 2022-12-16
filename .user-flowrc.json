@@ -1,0 +1,5 @@
+{
+  "collect": { "url": "http://localhost:4200/list/popular", "ufPath": "./user-flows/flows" },
+  "persist": { "format": ["html"], "outPath": "./user-flows/measures" },
+  "assert": {}
+}
