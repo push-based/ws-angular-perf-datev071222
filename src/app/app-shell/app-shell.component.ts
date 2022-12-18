@@ -1,6 +1,6 @@
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { distinctUntilChanged, filter, map } from 'rxjs';
+import { defer, distinctUntilChanged, filter, map } from 'rxjs';
 import { MovieService } from '../movie/movie.service';
 
 @Component({
@@ -20,6 +20,12 @@ export class AppShellComponent implements OnInit {
     return this._searchValue;
   }
   readonly genres$ = this.movieService.getGenres();
+
+  /*menuComp$ = defer(() =>
+    import('../shared/bundle/menu.component').then((m) => m.MenuComponent)
+  );*/
+
+  showMenu = false;
 
   constructor(private movieService: MovieService, private router: Router) {}
 

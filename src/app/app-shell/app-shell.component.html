@@ -111,7 +111,12 @@
           [(ngModel)]="searchValue"
       ></ui-search-bar>
       <ui-dark-mode-toggle></ui-dark-mode-toggle>
-      <svg-icon name="account"></svg-icon>
+      <svg-icon name="account" (click)="showMenu = !showMenu"></svg-icon>
+      <!--<ng-container *ngIf="menuComp$ | async as comp">
+        <ng-container *ngIf="showMenu">
+          <ng-container *ngComponentOutlet="comp"></ng-container>
+        </ng-container>
+      </ng-container>-->
       <!--<button (click)="toggleAuth()">
         {{ loggedIn ? 'log out' : 'log in' }}
       </button>-->

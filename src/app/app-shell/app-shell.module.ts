@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LetModule } from '@rx-angular/template/let';
+import { BundleModule } from '../shared/bundle';
 import { HamburgerButtonModule } from '../ui/component/hamburger-button/hamburger-button.module';
 import { IconRegistry } from '../ui/component/icons/icon-registry.service';
 import { SvgIconModule } from '../ui/component/icons/icon.module';
@@ -27,6 +28,7 @@ import { LazyModule } from '../shared/cdk/lazy/lazy.module';
     HttpClientModule,
     RouterModule,
     FormsModule,
+    // BundleModule,
   ],
   exports: [AppShellComponent],
   providers: [IconRegistry],
