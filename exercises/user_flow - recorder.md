@@ -81,7 +81,7 @@ Of course, after implementing the attributes, use them as selectors in your reco
 
 <a
   class="navigation--link"
-  data-uf="top_rated"
+  data-test="top_rated"
   [routerLink]="['/list', 'top_rated']"
   routerLinkActive="active"
 >
@@ -150,7 +150,7 @@ Of course, after implementing the attributes, use them as selectors in your reco
   <movie-card
     (selected)="navToDetail($event)"
     [movie]="movie"
-    [attr.data-uf]="movie.id"
+    [attr.data-test]="movie.id"
     *ngFor="let movie of movies">
 
   </movie-card>

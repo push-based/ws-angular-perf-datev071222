@@ -278,7 +278,7 @@ Now that the `timespan` event is scaffolded, script the events needed to do
 the actual navigation. You probably want to use the `page.click()` method and 
 select the `a[href="/list/top_rated"]` link.
 
-If you have added a `data-uf` attribute or any other identifier, you can use this instead.
+If you have added a `data-test` attribute or any other identifier, you can use this instead.
 
 As a last step, you also want to wait for the rendering process to be finished.
 There are different ways how to implement this, just naming some:
@@ -302,7 +302,7 @@ await Promise.all([
   // wait for api response
   page.waitForResponse('https://api.themoviedb.org/3/movie/top_rated?page=1&sort_by=popularity.desc'),
   // wait for specific movie in the dom
-  page.waitForSelector('movie-card[data-uf="240"]')
+  page.waitForSelector('movie-card[data-test="240"]')
 ]);
 
 await flow.endTimespan();
@@ -392,7 +392,7 @@ You may also want to introduce new steps as `waitForElement` or `waitForNavigati
 If you are happy with your result, export the recorder script as json.
 
 > **Pro Tip:** add a `waitForElement` step which waits for one of the searched movies
-> use the `data-uf` attribute to identify the element, e.g. `movie-card[data-uf="272"]` for `Batman Begins`
+> use the `data-test` attribute to identify the element, e.g. `movie-card[data-test="272"]` for `Batman Begins`
 
 ![recorder-export-to-json](images/user-flow/recorder-export-to-json.png)
 
@@ -464,7 +464,7 @@ Below you find a working example if you are experiencing any issues with the pro
       "frame": [],
       "selectors": [
         [
-          "movie-card[data-uf=\"272\"]"
+          "movie-card[data-test=\"272\"]"
         ]
       ]
     }
@@ -589,7 +589,7 @@ await Promise.all([
     'https://api.themoviedb.org/3/movie/top_rated?page=1&sort_by=popularity.desc'
   ),
   // wait for specific movie in the dom
-  page.waitForSelector('movie-card[data-uf="240"]', { timeout: 5000 }),
+  page.waitForSelector('movie-card[data-test="240"]', { timeout: 5000 }),
 ]);
 
 await flow.endTimespan();
